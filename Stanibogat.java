@@ -32,9 +32,18 @@ public class Stanibogat {
         for (int i = 0; i < questions.length; i++) {
             System.out.println("\nВъпрос " + (i + 1) + ":");
             System.out.println(questions[i]);
-            System.out.print("Твоят отговор (A,B,C,D): ");
-            String input = scanner.nextLine().trim().toUpperCase();
-            if (input.length() > 0 && input.charAt(0) == answers[i]) {
+
+            String input;
+            do {
+                System.out.print("Твоят отговор (A,B,C,D): ");
+                input = scanner.nextLine().trim().toUpperCase();
+
+                if (!input.matches("[ABCD]")) {
+                    System.out.println("Моля въведи само A, B, C или D!");
+                }
+            } while (!input.matches("[ABCD]"));
+
+            if (input.charAt(0) == answers[i]) {
                 System.out.println("Верен отговор! Печелиш " + money[i] + " лева.");
                 won = money[i];
             } else {
@@ -42,6 +51,7 @@ public class Stanibogat {
                 break;
             }
         }
+
         System.out.println("\nТвоята крайна печалба: " + won + " лева.");
         System.out.println("Благодарим, че игра!");
     }
