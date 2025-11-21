@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+public class Upgrade {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] questions = getQuestions();
+        char[] answers = getAnswers();
+        int[] money = getMoneyAmounts();
+
+        int won = 0;
+
+        System.out.println("Добре дошъл в играта 'Стани богат'!");
+
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println("\nВъпрос " + (i + 1) + ":");
+            System.out.println(questions[i]);
+
+            String input;
+            do {
+                System.out.print("Твоят отговор (A,B,C,D): ");
+                input = scanner.nextLine().trim().toUpperCase();
+
+                if (!input.matches("[ABCD]")) {
+                    System.out.println("Моля въведи само A, B, C или D!");
+                }
+            } while (!input.matches("[ABCD]"));
+
+            if (input.charAt(0) == answers[i]) {
+                System.out.println("Верен отговор! Печелиш " + money[i] + " лева.");
+                won = money[i];
+            } else {
+                System.out.println("Грешен отговор! Край на играта.");
+                break;
+            }
+        }
+
+        System.out.println("\nТвоята крайна печалба: " + won + " лева.");
+        System.out.println("Благодарим, че игра!");
+
+        scanner.close();
+    }
+
+    public static String[] getQuestions() {
+        return new String[]{
+            "Коя планета е най-близо до Слънцето?\nA) Марс\nB) Венера\nC) Меркурий\nD) Земя",
+            "Кой е авторът на романа 'Под игото'?\nA) Иван Вазов\nB) Христо Ботев\nC) Елин Пелин\nD) Пенчо Славейков",
+            "В коя година България става член на Европейския съюз?\nA) 2001\nB) 2007\nC) 1999\nD) 2010",
+            "Какъв е химичният символ на златото?\nA) Au\nB) Ag\nC) Fe\nD) Zn",
+            "Кой е най-големият океан на Земята?\nA) Атлантически\nB) Индийски\nC) Тихи\nD) Северен ледовит",
+            "Коя е столицата на Франция?\nA) Лондон\nB) Париж\nC) Рим\nD) Мадрид",
+            "Кой композитор е създал 'Лунна соната'?\nA) Моцарт\nB) Бах\nC) Бетовен\nD) Чайковски",
+            "С кой уред се измерва температурата?\nA) Барометър\nB) Термометър\nC) Хигрометър\nD) Манометър",
+            "Колко континента има на Земята?\nA) 5\nB) 6\nC) 7\nD) 8",
+            "Кой е химичният символ на водата?\nA) CO2\nB) H2O\nC) N2\nD) O2",
+            "Какво е столицата на Италия?\nA) Милано\nB) Венеция\nC) Рим\nD) Флоренция",
+            "Кой изобретява телефона?\nA) Александър Бел\nB) Томас Едисън\nC) Никола Тесла\nD) Галилео Галилей",
+            "Коя река преминава през Лондон?\nA) Темза\nB) Сена\nC) Дунав\nD) Рейн",
+            "Кой български град е известен с крепостта 'Царевец'?\nA) Варна\nB) Пловдив\nC) Велико Търново\nD) Русе",
+            "Кой е химичният елемент с атомен номер 1?\nA) Хелий\nB) Водород\nC) Литий\nD) Кислород"
+        };
+    }
+
+ 
+ 
+    public static char[] getAnswers() {
+        return new char[]{
+            'C', 'A', 'B', 'A', 'C',
+            'B', 'C', 'B', 'C', 'B',
+            'C', 'A', 'A', 'C', 'B'
+        };
+    }
+
+    public static int[] getMoneyAmounts() {
+        return new int[]{
+            100, 200, 300, 500, 800,
+            1000, 1500, 2500, 5000, 8000,
+            15000, 20000, 30000, 50000, 100000
+        };
+    }
+}
+
